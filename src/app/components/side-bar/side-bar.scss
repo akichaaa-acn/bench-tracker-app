@@ -1,0 +1,232 @@
+// =====================================================
+// BenchFlow Sidebar
+// =====================================================
+
+// Variables
+$sidebar-width: 280px;
+$sidebar-mobile-width: 68px;
+
+$background: #0d0a12;
+
+$text: #f5effa;
+$text-muted: #92849f;
+$text-secondary: #b5a9bf;
+
+$purple: #a900ff;
+$active-purple: #32094d;
+
+$border: #2b2730;
+$transition: 200ms ease;
+
+// Sidebar
+.sidebar {
+  width: $sidebar-width;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 14px 20px;
+  background: $background;
+  color: $text;
+  overflow: hidden;
+  transition: width $transition, padding $transition;
+
+  // Brand
+  .brand {
+    display: flex;
+    align-items: center;
+    min-width: 240px;
+    padding-left: 6px;
+    margin-bottom: 38px;
+
+    .brand-logo {
+      width: 29px;
+      color: $purple;
+      font-family: Arial, sans-serif;
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+
+
+    .brand-content {
+      margin-left: 8px;
+      white-space: nowrap;
+
+      .brand-name {
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.4px;
+      }
+
+      .brand-subtitle {
+        margin-top: 4px;
+        color: $text-secondary;
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.8px;
+      }
+    }
+  }
+
+  // Navigation
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // Workspace
+    .navigation-title {
+      margin: 0 0 10px 11px;
+      color: $text-muted;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.9px;
+    }
+
+    // Navigation Item
+    .navigation-item {
+      width: 100%;
+      height: 50px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      margin-bottom: 2px;
+      border-radius: 11px;
+      color: #e8dfea;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background $transition, color $transition;
+
+      // Hover
+      &:hover {
+        background: rgba($purple, 0.12);
+      }
+
+      // Active
+      &.active {
+        background: $active-purple;
+        color: #ffffff;
+      }
+  
+      // Icon
+      .navigation-icon {
+        width: 21px;
+        min-width: 21px;
+        height: 21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #eee1f3;
+
+        svg {
+          width: 17px;
+          height: 17px;
+          display: block;
+        }
+      }
+
+      // Label
+      .navigation-label {
+        margin-left: 14px;
+        font-size: 16px;
+        font-weight: 400;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  // Footer
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 0 10px;
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      margin-bottom: 11px;
+      background: $border;
+    }
+
+    .footer-text {
+      color: #a99caf;
+      font-size: 11px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+  }
+}
+
+// Responsive / Mobile
+@media (max-width: 768px) {
+  .sidebar {
+    width: $sidebar-mobile-width;
+    padding: 32px 7px 20px;
+
+    // Brand
+    .brand {
+      min-width: auto;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin-bottom: 38px;
+
+      .brand-logo {
+        width: auto;
+        font-size: 31px;
+      }
+
+      .brand-content {
+        display: none;
+      }
+    }
+
+    // Navigation
+    .navigation {
+
+      .navigation-title {
+        display: none;
+      }
+
+      .navigation-item {
+        width: 54px;
+        height: 50px;
+        padding: 0;
+        margin: 0 auto 2px;
+        justify-content: center;
+        border-radius: 11px;
+
+        .navigation-icon {
+          width: 21px;
+          min-width: 21px;
+          height: 21px;
+
+          svg {
+            width: 17px;
+            height: 17px;
+          }
+        }
+
+        .navigation-label {
+          display: none;
+        }
+      }
+    }
+
+    // Footer
+    .sidebar-footer {
+      display: none;
+    }
+  }
+}
+
+// Small Mobile
+@media (max-width: 480px) {
+
+  .sidebar {
+    width: $sidebar-mobile-width;
+  }
+}

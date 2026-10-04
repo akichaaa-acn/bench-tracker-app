@@ -1,0 +1,136 @@
+<aside class="sidebar">
+  <!-- Logo -->
+  <div class="brand">
+    <div class="brand-logo">
+      &gt;
+    </div>
+
+    <div class="brand-content">
+      <div class="brand-name">
+        BenchFlow
+      </div>
+
+      <div class="brand-subtitle">
+        RESOURCE MANAGEMENT
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navigation">
+    <div class="navigation-title">
+      WORKSPACE
+    </div>
+
+    @for (item of menuItems; track item.route) {
+      <a
+        class="navigation-item"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="navigation-icon">
+          @switch (item.icon) {
+            @case ('grid') {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <rect
+                  x="4"
+                  y="4"
+                  width="16"
+                  height="16"
+                  rx="1"
+                />
+
+                <line x1="4" y1="9" x2="20" y2="9" />
+                <line x1="4" y1="14" x2="20" y2="14" />
+
+                <line x1="9" y1="4" x2="9" y2="20" />
+                <line x1="14" y1="4" x2="14" y2="20" />
+              </svg>
+            }
+
+            @case ('target') {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <circle cx="12" cy="12" r="8.5" />
+                <circle cx="12" cy="12" r="4.5" />
+                <circle cx="12" cy="12" r="1.5" />
+              </svg>
+            }
+
+            @case ('check') {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="5 13 9 17 19 6" />
+              </svg>
+            }
+
+            @case ('diamond') {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <polygon points="12,4 19,12 12,20 5,12" />
+              </svg>
+            }
+
+            @case ('flag') {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line
+                  x1="5"
+                  y1="4"
+                  x2="5"
+                  y2="21"
+                />
+                <path
+                  d="M5 5 C9 3, 12 7, 18 5 V14 C12 16, 9 12, 5 14"
+                />
+              </svg>
+            }
+          }
+        </span>
+
+        <span class="navigation-label">
+          {{ item.label }}
+        </span>
+
+      </a>
+    }
+  </nav>
+  <!-- Footer -->
+  <footer class="sidebar-footer">
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-text">
+      <div>Prototype • Demo data only</div>
+    </div>
+
+  </footer>
+
+</aside>
