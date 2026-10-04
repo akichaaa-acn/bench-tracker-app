@@ -5,34 +5,71 @@
 
     <button
       type="button"
-      class="sidebar-toggle"
-      aria-label="Toggle sidebar"
+      class="menu-button"
       (click)="toggleSidebar()"
+      aria-label="Toggle sidebar"
     >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.8"
-        stroke-linecap="round"
-      >
-        <line x1="4" y1="7" x2="20" y2="7"></line>
-        <line x1="4" y1="12" x2="20" y2="12"></line>
-        <line x1="4" y1="17" x2="20" y2="17"></line>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
       </svg>
     </button>
+
+    <div class="header-title">
+
+      <span class="header-title-main">
+        {{ role === 'admin' ? 'Admin Dashboard' : 'My Dashboard' }}
+      </span>
+
+      <span class="header-title-sub">
+        {{ role === 'admin'
+          ? 'Bench management overview'
+          : 'Your bench workspace'
+        }}
+      </span>
+
+    </div>
 
   </div>
 
   <!-- Right -->
   <div class="header-right">
 
+    <button
+      type="button"
+      class="notification-button"
+      aria-label="Notifications"
+    >
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <path
+          d="M10 21h4"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <span class="notification-dot"></span>
+    </button>
+
+    <!-- Profile -->
     <div class="profile-container">
 
       <button
         type="button"
         class="profile-button"
-        aria-label="Open profile menu"
         (click)="toggleProfileMenu()"
       >
 
@@ -53,15 +90,17 @@
         </span>
 
         <svg
-          class="profile-chevron"
+          class="profile-arrow"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
         >
-          <polyline points="6 9 12 15 18 9"></polyline>
+          <path
+            d="m7 10 5 5 5-5"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
 
       </button>
@@ -70,96 +109,42 @@
 
         <div class="profile-menu">
 
-          <!-- User Info -->
           <div class="profile-menu-header">
 
-            <span class="profile-avatar profile-avatar-large">
-              {{ initials }}
+            <strong>
+              {{ userName }}
+            </strong>
+
+            <span>
+              {{ userRole }}
             </span>
-
-            <div>
-
-              <div class="profile-menu-name">
-                {{ userName }}
-              </div>
-
-              <div class="profile-menu-email">
-                {{ userRole }}
-              </div>
-
-            </div>
 
           </div>
 
           <div class="profile-menu-divider"></div>
 
-          <!-- Profile -->
-          <a
-            routerLink="/profile"
-            class="profile-menu-item"
-            (click)="closeProfileMenu()"
-          >
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-            >
-              <circle cx="12" cy="8" r="3.5"></circle>
-              <path d="M5 20c.8-3.4 3.1-5.2 7-5.2s6.2 1.8 7 5.2"></path>
-            </svg>
-
-            <span>View Profile</span>
-
-          </a>
-
-          <!-- Settings -->
-          <a
-            routerLink="/settings"
-            class="profile-menu-item"
-            (click)="closeProfileMenu()"
-          >
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-            >
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.5v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H6v-2.5h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L9 6.7l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.1h2.5v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1z"></path>
-            </svg>
-
-            <span>Settings</span>
-
-          </a>
-
-          <div class="profile-menu-divider"></div>
-
-          <!-- Logout / Demo Switch -->
           <button
             type="button"
-            class="profile-menu-item logout"
-            (click)="logoutUser()"
+            class="profile-menu-item"
+            (click)="switchAccount()"
           >
 
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M10 17l5-5-5-5"></path>
-              <path d="M15 12H3"></path>
-              <path d="M21 19V5"></path>
-            </svg>
-
             <span>
-              {{ role === 'admin' ? 'Logout' : 'Logout' }}
+              {{ role === 'admin'
+                ? 'Switch to User'
+                : 'Switch to Admin'
+              }}
             </span>
+
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 6 15 12 9 18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
 
           </button>
 

@@ -53,12 +53,7 @@
 
 // Responsive
 @media (max-width: 768px) {
-  .sidebar-container {
-    width: 68px;
-    position: relative;
-    z-index: 200;
-  }
-
+  .sidebar-container,
   .sidebar-container.collapsed {
     width: 68px;
   }

@@ -5,12 +5,10 @@ import {
   Input,
   Output
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
@@ -34,7 +32,7 @@ export class Header {
     this.profileMenuOpen = false;
   }
 
-  logoutUser(): void {
+  switchAccount(): void {
     this.profileMenuOpen = false;
     this.logout.emit();
   }
@@ -51,7 +49,7 @@ export class Header {
   get userName(): string {
     return this.role === 'admin'
       ? 'Admin User'
-      : 'Bench Resource';
+      : 'Alex Santos';
   }
 
   get userRole(): string {
@@ -63,6 +61,6 @@ export class Header {
   get initials(): string {
     return this.role === 'admin'
       ? 'AM'
-      : 'BR';
+      : 'AS';
   }
 }

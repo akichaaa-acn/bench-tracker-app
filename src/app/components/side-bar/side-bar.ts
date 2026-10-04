@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  RouterLink,
+  RouterLinkActive
+} from '@angular/router';
 
 interface MenuItem {
   label: string;
@@ -24,7 +27,7 @@ export class SideBar {
   adminMenu: MenuItem[] = [
     {
       label: 'Dashboard',
-      route: '/dashboard',
+      route: '/admin/dashboard',
       icon: 'grid'
     },
     {
@@ -57,22 +60,22 @@ export class SideBar {
   userMenu: MenuItem[] = [
     {
       label: 'Dashboard',
-      route: '/dashboard',
+      route: '/user/dashboard',
       icon: 'grid'
     },
     {
       label: 'Tasks',
-      route: '/tasks',
+      route: '/user/tasks',
       icon: 'check'
     },
     {
       label: 'Time In',
-      route: '/time-in',
+      route: '/user/time-in',
       icon: 'clock'
     },
     {
       label: 'Time Out',
-      route: '/time-out',
+      route: '/user/time-out',
       icon: 'clock-out'
     }
   ];
