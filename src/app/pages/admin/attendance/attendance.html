@@ -1,0 +1,295 @@
+<!-- =====================================================
+// Attendance
+// ===================================================== -->
+
+<div class="attendance-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <span class="page-eyebrow">
+        Attendance Management
+      </span>
+
+      <h1>
+        Attendance
+      </h1>
+
+      <p>
+        Monitor today's resource attendance and time-in records.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Unapproved Absences -->
+  <section class="absence-card">
+
+    <div class="absence-header">
+
+      <div>
+        <span class="card-eyebrow">
+          Attendance Alert
+        </span>
+
+        <h2>
+          Unapproved Absences
+        </h2>
+
+        <p>
+          Resources with attendance records requiring admin review.
+        </p>
+      </div>
+
+      <span class="absence-count">
+        {{ unapprovedAbsences.length }}
+      </span>
+
+    </div>
+
+    @if (unapprovedAbsences.length > 0) {
+
+      <div class="absence-list">
+
+        @for (
+          resource of unapprovedAbsences;
+          track resource.name
+        ) {
+
+          <div
+            class="absence-item"
+            [class.critical]="resource.absenceDays >= 3"
+          >
+
+            <div class="absence-resource">
+
+              <strong>
+                {{ resource.name }}
+              </strong>
+
+              <span>
+                Today's attendance requires review
+              </span>
+
+            </div>
+
+            <div class="absence-days">
+
+              <strong>
+                {{ resource.absenceDays }}
+              </strong>
+
+              <span>
+                day{{ resource.absenceDays === 1 ? '' : 's' }} absent
+              </span>
+
+            </div>
+
+            @if (resource.absenceDays >= 3) {
+
+              <div class="critical-warning">
+
+                <span class="warning-icon">
+                  !
+                </span>
+
+                <span>
+                  3 or more days absent. May require action.
+                </span>
+
+              </div>
+
+            } @else {
+
+              <div class="absence-warning">
+                Unapproved absence requires review.
+              </div>
+
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <div class="empty-state">
+        No unapproved absences requiring review.
+      </div>
+
+    }
+
+  </section>
+
+  <!-- Today's Time-In -->
+  <section class="attendance-card">
+
+    <div class="attendance-header">
+
+      <div>
+        <span class="card-eyebrow">
+          Daily Attendance
+        </span>
+
+        <h2>
+          Today's Time-In
+        </h2>
+
+        <p>
+          Resource time-in and time-out attendance for today.
+        </p>
+      </div>
+
+      <div class="attendance-summary">
+
+        <span class="summary-present">
+          {{ presentToday }} Present
+        </span>
+
+        <span class="summary-leave">
+          {{ onLeaveToday }} On Leave
+        </span>
+
+        <span class="summary-absent">
+          {{ absentToday }} Absent
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="attendance-table-wrapper">
+
+      <table class="attendance-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Resources
+            </th>
+
+            <th>
+              Time In
+            </th>
+
+            <th>
+              Time Out
+            </th>
+
+            <th>
+              Hours
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          @for (
+            record of attendanceRecords;
+            track record.name
+          ) {
+
+            <tr
+              [class.absent-row]="record.status === 'Absent'"
+            >
+
+              <td>
+
+                <span
+                  class="resource-name"
+                  [class.absent-name]="record.status === 'Absent'"
+                >
+                  {{ record.name }}
+                </span>
+
+              </td>
+
+              <td>
+
+                @if (record.status === 'Present') {
+
+                  <span class="time-value">
+                    {{ record.timeIn }}
+                  </span>
+
+                } @else if (record.status === 'On Leave') {
+
+                  <span class="leave-value">
+                    On Leave
+                  </span>
+
+                } @else {
+
+                  <span class="blank-value">
+                  </span>
+
+                }
+
+              </td>
+
+              <td>
+
+                @if (record.status === 'Present') {
+
+                  <span class="time-value">
+                    {{ record.timeOut }}
+                  </span>
+
+                } @else if (record.status === 'On Leave') {
+
+                  <span class="blocked-value">
+                    Blocked
+                  </span>
+
+                } @else {
+
+                  <span class="blank-value">
+                  </span>
+
+                }
+
+              </td>
+
+              <td>
+
+                @if (record.status === 'Present') {
+
+                  <span class="hours-value">
+                    {{ getHoursWorked(record) }}
+                  </span>
+
+                } @else if (record.status === 'On Leave') {
+
+                  <span class="leave-value">
+                    On Leave
+                  </span>
+
+                } @else {
+
+                  <span class="blank-value">
+                  </span>
+
+                }
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</div>

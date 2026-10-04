@@ -18,10 +18,16 @@ export const routes: Routes = [
       import('./pages/admin/resources/resources')
         .then(m => m.Resources)
   },
+
+  {
+  path: 'attendance',
+  loadComponent: () =>
+    import('./pages/admin/attendance/attendance')
+      .then(m => m.Attendance)
+  },
   // =====================================================
   // User
   // =====================================================
-
   {
     path: 'user/dashboard',
     loadComponent: () =>
