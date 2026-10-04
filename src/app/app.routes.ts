@@ -30,6 +30,19 @@ export const routes: Routes = [
         .then(m => m.Tasks)
   },
 
+  {
+  path: 'user/time-in',
+  loadComponent: () =>
+    import('./pages/user/time-in/time-in')
+      .then(m => m.TimeIn)
+  },
+
+  {
+  path: 'user/time-out',
+  loadComponent: () =>
+    import('./pages/user/time-out/time-out')
+      .then(m => m.TimeOut)
+  },
   // =====================================================
   // Default
   // =====================================================
