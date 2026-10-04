@@ -12,6 +12,12 @@ export const routes: Routes = [
         .then(m => m.Dashboard)
   },
 
+  {
+    path: 'resources',
+    loadComponent: () =>
+      import('./pages/admin/resources/resources')
+        .then(m => m.Resources)
+  },
   // =====================================================
   // User
   // =====================================================

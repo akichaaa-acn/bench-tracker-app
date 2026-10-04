@@ -11,12 +11,9 @@
     </div>
 
   </section>
-
-
   <!-- ================================================= -->
   <!-- Summary Cards -->
   <!-- ================================================= -->
-
   <section class="summary-grid">
 
     <!-- Total Bench Employees -->
@@ -42,7 +39,6 @@
 
     </article>
 
-
     <!-- Attendance Today -->
     <article class="summary-card">
 
@@ -66,7 +62,6 @@
 
     </article>
 
-
     <!-- Ready for Deployment -->
     <article class="summary-card">
 
@@ -89,21 +84,14 @@
       </div>
 
     </article>
-
   </section>
-
-
   <!-- ================================================= -->
   <!-- Attendance Section -->
   <!-- ================================================= -->
-
   <section class="attendance-section">
-
-
     <!-- ================================================= -->
     <!-- Attendance Trend -->
     <!-- ================================================= -->
-
     <div class="dashboard-card attendance-card">
 
       <div class="card-header">
@@ -116,7 +104,6 @@
             actual absences.
           </p>
         </div>
-
 
         <!-- View Toggle -->
         <div class="view-toggle">
@@ -144,11 +131,8 @@
           >
             Month
           </button>
-
         </div>
-
       </div>
-
 
       <!-- Chart -->
       <div class="chart-wrapper">
@@ -253,7 +237,6 @@
 
           </svg>
 
-
           <!-- X Axis -->
           <div class="chart-labels">
 
@@ -267,13 +250,9 @@
               </span>
 
             }
-
           </div>
-
         </div>
-
       </div>
-
 
       <!-- Legend -->
       <div class="chart-footer">
@@ -299,27 +278,19 @@
             <span class="legend-dot absent"></span>
             Unapproved Absence
           </span>
-
         </div>
-
 
         @if (viewMode === 'day') {
 
           <span class="chart-note">
             Daily view shows actual resource counts.
           </span>
-
         }
-
       </div>
-
     </div>
-
-
     <!-- ================================================= -->
     <!-- Today's Attendance Summary -->
     <!-- ================================================= -->
-
     <div class="dashboard-card attendance-summary-card">
 
       <div class="summary-header">
@@ -335,13 +306,9 @@
         <span class="summary-date">
           Today
         </span>
-
       </div>
 
-
       <div class="attendance-stats">
-
-
         <!-- Present -->
         <div class="attendance-stat">
 
@@ -358,11 +325,8 @@
             <span class="stat-label">
               Present
             </span>
-
           </div>
-
         </div>
-
 
         <!-- Sick Leave -->
         <div class="attendance-stat">
@@ -380,11 +344,8 @@
             <span class="stat-label">
               Sick Leave
             </span>
-
           </div>
-
         </div>
-
 
         <!-- Vacation Leave -->
         <div class="attendance-stat">
@@ -402,11 +363,8 @@
             <span class="stat-label">
               Vacation Leave
             </span>
-
           </div>
-
         </div>
-
 
         <!-- Unapproved Absence -->
         <div class="attendance-stat">
@@ -424,22 +382,14 @@
             <span class="stat-label">
               Unapproved Absence
             </span>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
-
-
   <!-- ================================================= -->
   <!-- Action Items -->
   <!-- ================================================= -->
-
   <section class="dashboard-card action-card">
 
     <div class="card-header">
@@ -451,22 +401,16 @@
         <p>
           Most urgent items requiring your attention.
         </p>
-
       </div>
-
-
       <button
         type="button"
         class="view-all-button"
       >
         View all
       </button>
-
     </div>
 
-
     <div class="action-list">
-
       @for (
         item of actionItems;
         track item.title
@@ -480,7 +424,6 @@
             [class.medium]="item.priority === 'Medium'"
           >
           </div>
-
 
           <div class="action-content">
 
@@ -497,17 +440,13 @@
               >
                 {{ item.priority }}
               </span>
-
             </div>
-
 
             <p>
               {{ item.description }}
             </p>
 
-
             <div class="action-meta">
-
               <span>
                 {{ item.type }}
               </span>
@@ -515,11 +454,8 @@
               <span>
                 {{ item.due }}
               </span>
-
             </div>
-
           </div>
-
 
           <button
             type="button"
@@ -527,13 +463,8 @@
           >
             →
           </button>
-
         </div>
-
       }
-
     </div>
-
   </section>
-
 </div>

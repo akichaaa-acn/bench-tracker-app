@@ -20,11 +20,7 @@ $border: #e8e2eb;
 
 $radius: 16px;
 
-
-// =====================================================
 // Dashboard
-// =====================================================
-
 .dashboard {
   width: 100%;
   max-width: 1440px;
@@ -32,11 +28,7 @@ $radius: 16px;
   box-sizing: border-box;
 }
 
-
-// =====================================================
 // Dashboard Header
-// =====================================================
-
 .dashboard-header {
   margin-bottom: 20px;
 
@@ -55,18 +47,13 @@ $radius: 16px;
   }
 }
 
-
-// =====================================================
 // Summary Cards
-// =====================================================
-
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   margin-bottom: 20px;
 }
-
 
 // Summary Card
 .summary-card {
@@ -81,7 +68,6 @@ $radius: 16px;
   box-shadow: 0 3px 12px rgba(30, 15, 40, 0.03);
 }
 
-
 // Card Decoration
 .card-decoration {
   position: absolute;
@@ -93,7 +79,6 @@ $radius: 16px;
   background: #f5e8fc;
 }
 
-
 // Card Content
 .card-content {
   position: relative;
@@ -102,14 +87,12 @@ $radius: 16px;
   flex-direction: column;
 }
 
-
 // Card Label
 .card-label {
   color: $text-secondary;
   font-size: 12px;
   font-weight: 600;
 }
-
 
 // Card Value
 .card-value {
@@ -121,7 +104,6 @@ $radius: 16px;
   letter-spacing: -1px;
 }
 
-
 // Card Meta
 .card-meta {
   margin-top: 10px;
@@ -132,11 +114,7 @@ $radius: 16px;
   }
 }
 
-
-// =====================================================
 // Dashboard Card
-// =====================================================
-
 .dashboard-card {
   box-sizing: border-box;
   padding: 22px;
@@ -146,11 +124,7 @@ $radius: 16px;
   box-shadow: 0 3px 12px rgba(30, 15, 40, 0.03);
 }
 
-
-// =====================================================
 // Card Header
-// =====================================================
-
 .card-header {
   display: flex;
   align-items: flex-start;
@@ -172,11 +146,7 @@ $radius: 16px;
   }
 }
 
-
-// =====================================================
 // Attendance Section
-// =====================================================
-
 .attendance-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
@@ -185,18 +155,13 @@ $radius: 16px;
   margin-bottom: 20px;
 }
 
-
 // Attendance Card
 .attendance-card {
   min-width: 0;
   margin: 0;
 }
 
-
-// =====================================================
 // View Toggle
-// =====================================================
-
 .view-toggle {
   display: flex;
   padding: 3px;
@@ -228,17 +193,12 @@ $radius: 16px;
   }
 }
 
-
-// =====================================================
 // Chart
-// =====================================================
-
 .chart-wrapper {
   display: flex;
   width: 100%;
   min-height: 280px;
 }
-
 
 // Chart Y Axis
 .chart-y-axis {
@@ -253,14 +213,12 @@ $radius: 16px;
   text-align: right;
 }
 
-
 // Chart Area
 .chart-area {
   min-width: 0;
   flex: 1;
   overflow: hidden;
 }
-
 
 // Attendance Chart
 .attendance-chart {
@@ -307,7 +265,6 @@ $radius: 16px;
   }
 }
 
-
 // Chart Labels
 .chart-labels {
   display: flex;
@@ -317,11 +274,7 @@ $radius: 16px;
   font-size: 10px;
 }
 
-
-// =====================================================
 // Chart Footer
-// =====================================================
-
 .chart-footer {
   display: flex;
   align-items: center;
@@ -329,7 +282,6 @@ $radius: 16px;
   gap: 15px;
   margin-top: 8px;
 }
-
 
 // Legend
 .legend {
@@ -339,7 +291,6 @@ $radius: 16px;
   gap: 18px;
 }
 
-
 // Legend Item
 .legend-item {
   display: flex;
@@ -348,7 +299,6 @@ $radius: 16px;
   color: $text-secondary;
   font-size: 10px;
 }
-
 
 // Legend Dot
 .legend-dot {
@@ -373,23 +323,17 @@ $radius: 16px;
   }
 }
 
-
 // Chart Note
 .chart-note {
   color: $text-muted;
   font-size: 9px;
 }
 
-
-// =====================================================
 // Today's Attendance Summary
-// =====================================================
-
 .attendance-summary-card {
   min-width: 0;
   margin: 0;
 }
-
 
 // Summary Header
 .summary-header {
@@ -413,7 +357,6 @@ $radius: 16px;
   }
 }
 
-
 // Summary Date
 .summary-date {
   padding: 5px 8px;
@@ -424,14 +367,12 @@ $radius: 16px;
   font-weight: 600;
 }
 
-
 // Attendance Stats
 .attendance-stats {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-
 
 // Attendance Stat
 .attendance-stat {
@@ -445,7 +386,6 @@ $radius: 16px;
     border-bottom: 0;
   }
 }
-
 
 // Stat Icon
 .stat-icon {
@@ -480,14 +420,12 @@ $radius: 16px;
   }
 }
 
-
 // Stat Info
 .stat-info {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-
 
 // Stat Value
 .stat-value {
@@ -497,22 +435,16 @@ $radius: 16px;
   line-height: 1;
 }
 
-
 // Stat Label
 .stat-label {
   color: $text-secondary;
   font-size: 10px;
 }
 
-
-// =====================================================
 // Action Items
-// =====================================================
-
 .action-card {
   margin-top: 20px;
 }
-
 
 // View All
 .view-all-button {
@@ -530,13 +462,11 @@ $radius: 16px;
   }
 }
 
-
 // Action List
 .action-list {
   display: flex;
   flex-direction: column;
 }
-
 
 // Action Item
 .action-item {
@@ -551,7 +481,6 @@ $radius: 16px;
     border-top: 0;
   }
 }
-
 
 // Action Indicator
 .action-indicator {
@@ -569,13 +498,11 @@ $radius: 16px;
   }
 }
 
-
 // Action Content
 .action-content {
   min-width: 0;
   flex: 1;
 }
-
 
 // Action Title
 .action-title-row {
@@ -590,7 +517,6 @@ $radius: 16px;
     font-weight: 600;
   }
 }
-
 
 // Priority
 .priority {
@@ -610,14 +536,12 @@ $radius: 16px;
   }
 }
 
-
 // Action Description
 .action-content p {
   margin: 4px 0 0;
   color: $text-secondary;
   font-size: 10px;
 }
-
 
 // Action Meta
 .action-meta {
@@ -627,7 +551,6 @@ $radius: 16px;
   color: $text-muted;
   font-size: 9px;
 }
-
 
 // Action Arrow
 .action-arrow {
@@ -647,11 +570,7 @@ $radius: 16px;
   }
 }
 
-
-// =====================================================
 // Responsive
-// =====================================================
-
 @media (max-width: 1000px) {
   .attendance-section {
     grid-template-columns: 1fr;
@@ -661,7 +580,6 @@ $radius: 16px;
     min-height: auto;
   }
 }
-
 
 @media (max-width: 900px) {
   .summary-grid {
@@ -677,7 +595,6 @@ $radius: 16px;
     flex-direction: column;
   }
 }
-
 
 @media (max-width: 768px) {
   .dashboard-header {
