@@ -1,0 +1,254 @@
+// =====================================================
+// Header
+// =====================================================
+
+$header-height: 64px;
+$background: #ffffff;
+$border: #e8e4eb;
+$text: #29232f;
+$text-muted: #817687;
+$purple-dark: #32094d;
+$avatar-background: #eee4f5;
+
+// Header
+.header {
+  width: 100%;
+  height: $header-height;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: $background;
+  border-bottom: 1px solid $border;
+  position: relative;
+  z-index: 100;
+}
+
+// Header Left
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+// Sidebar Toggle
+.sidebar-toggle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: $text-muted;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+
+  &:hover {
+    background: #f3edf7;
+    color: $purple-dark;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Header Right
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+// Profile
+.profile-container {
+  position: relative;
+}
+
+// Profile Button
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 7px 4px 4px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 180ms ease;
+
+  &:hover {
+    background: #f6f2f8;
+  }
+}
+
+// Avatar
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: $avatar-background;
+  color: $purple-dark;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+// Profile Info
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.profile-name {
+  color: $text;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.profile-role {
+  color: $text-muted;
+  font-size: 10px;
+}
+
+// Chevron
+.profile-chevron {
+  width: 13px;
+  height: 13px;
+  color: $text-muted;
+}
+
+// Profile Menu
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 235px;
+  padding: 7px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid $border;
+  border-radius: 11px;
+  box-shadow: 0 8px 24px rgba(20, 10, 30, 0.08);
+  animation: profileMenuIn 150ms ease-out;
+}
+
+// Profile Menu Header
+.profile-menu-header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px;
+}
+
+.profile-avatar-large {
+  width: 38px;
+  height: 38px;
+}
+
+.profile-menu-name {
+  color: $text;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.profile-menu-email {
+  margin-top: 2px;
+  color: $text-muted;
+  font-size: 9px;
+}
+
+// Divider
+.profile-menu-divider {
+  width: 100%;
+  height: 1px;
+  margin: 4px 0;
+  background: $border;
+}
+
+// Menu Item
+.profile-menu-item {
+  width: 100%;
+  min-height: 37px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: $text;
+  font-family: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background: #f5eff8;
+    color: $purple-dark;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &.logout {
+    color: #b42318;
+
+    &:hover {
+      background: #fff1f0;
+      color: #a21b12;
+    }
+  }
+}
+
+// Animation
+@keyframes profileMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .header {
+    height: 58px;
+    padding: 0 14px;
+  }
+
+  .profile-info,
+  .profile-chevron {
+    display: none;
+  }
+
+  .profile-button {
+    padding: 3px;
+  }
+
+  .profile-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .profile-menu {
+    width: 220px;
+  }
+}

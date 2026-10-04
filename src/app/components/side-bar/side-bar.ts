@@ -1,28 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
+interface MenuItem {
+  label: string;
+  route: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-side-bar',
-  imports: [RouterLink, RouterLinkActive],
+  standalone: true,
+  imports: [
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './side-bar.html',
   styleUrl: './side-bar.scss'
 })
 export class SideBar {
+  @Input() collapsed = false;
+  @Input() role: 'admin' | 'user' = 'admin';
 
-  menuItems = [
+  adminMenu: MenuItem[] = [
     {
-      label: 'Bench Lead View',
-      route: '/bench-lead',
+      label: 'Dashboard',
+      route: '/dashboard',
       icon: 'grid'
     },
     {
-      label: 'Bench Resource View',
-      route: '/bench-resource',
-      icon: 'target'
+      label: 'Resources',
+      route: '/resources',
+      icon: 'user'
     },
     {
-      label: 'Tasks',
-      route: '/tasks',
+      label: 'Attendance',
+      route: '/attendance',
+      icon: 'calendar'
+    },
+    {
+      label: 'Productivity',
+      route: '/productivity',
       icon: 'check'
     },
     {
@@ -37,4 +54,38 @@ export class SideBar {
     }
   ];
 
+  userMenu: MenuItem[] = [
+    {
+      label: 'Dashboard',
+      route: '/dashboard',
+      icon: 'grid'
+    },
+    {
+      label: 'Tasks',
+      route: '/tasks',
+      icon: 'check'
+    },
+    {
+      label: 'Time In',
+      route: '/time-in',
+      icon: 'clock'
+    },
+    {
+      label: 'Time Out',
+      route: '/time-out',
+      icon: 'clock-out'
+    }
+  ];
+
+  get menuItems(): MenuItem[] {
+    return this.role === 'admin'
+      ? this.adminMenu
+      : this.userMenu;
+  }
+
+  get roleLabel(): string {
+    return this.role === 'admin'
+      ? 'Admin / Bench Lead'
+      : 'User / Bench Resource';
+  }
 }

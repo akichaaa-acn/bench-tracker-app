@@ -1,0 +1,174 @@
+<header class="header">
+
+  <!-- Left -->
+  <div class="header-left">
+
+    <button
+      type="button"
+      class="sidebar-toggle"
+      aria-label="Toggle sidebar"
+      (click)="toggleSidebar()"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      >
+        <line x1="4" y1="7" x2="20" y2="7"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="17" x2="20" y2="17"></line>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Right -->
+  <div class="header-right">
+
+    <div class="profile-container">
+
+      <button
+        type="button"
+        class="profile-button"
+        aria-label="Open profile menu"
+        (click)="toggleProfileMenu()"
+      >
+
+        <span class="profile-avatar">
+          {{ initials }}
+        </span>
+
+        <span class="profile-info">
+
+          <span class="profile-name">
+            {{ userName }}
+          </span>
+
+          <span class="profile-role">
+            {{ userRole }}
+          </span>
+
+        </span>
+
+        <svg
+          class="profile-chevron"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+
+      </button>
+
+      @if (profileMenuOpen) {
+
+        <div class="profile-menu">
+
+          <!-- User Info -->
+          <div class="profile-menu-header">
+
+            <span class="profile-avatar profile-avatar-large">
+              {{ initials }}
+            </span>
+
+            <div>
+
+              <div class="profile-menu-name">
+                {{ userName }}
+              </div>
+
+              <div class="profile-menu-email">
+                {{ userRole }}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="profile-menu-divider"></div>
+
+          <!-- Profile -->
+          <a
+            routerLink="/profile"
+            class="profile-menu-item"
+            (click)="closeProfileMenu()"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="8" r="3.5"></circle>
+              <path d="M5 20c.8-3.4 3.1-5.2 7-5.2s6.2 1.8 7 5.2"></path>
+            </svg>
+
+            <span>View Profile</span>
+
+          </a>
+
+          <!-- Settings -->
+          <a
+            routerLink="/settings"
+            class="profile-menu-item"
+            (click)="closeProfileMenu()"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.5v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H6v-2.5h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L9 6.7l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.1h2.5v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1z"></path>
+            </svg>
+
+            <span>Settings</span>
+
+          </a>
+
+          <div class="profile-menu-divider"></div>
+
+          <!-- Logout / Demo Switch -->
+          <button
+            type="button"
+            class="profile-menu-item logout"
+            (click)="logoutUser()"
+          >
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M10 17l5-5-5-5"></path>
+              <path d="M15 12H3"></path>
+              <path d="M21 19V5"></path>
+            </svg>
+
+            <span>
+              {{ role === 'admin' ? 'Logout' : 'Logout' }}
+            </span>
+
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+</header>

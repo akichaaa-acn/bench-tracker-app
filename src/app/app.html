@@ -1,9 +1,31 @@
 <div class="app-layout">
 
-  <app-side-bar />
+  <!-- Sidebar -->
+  <aside
+    class="sidebar-container"
+    [class.collapsed]="sidebarCollapsed"
+  >
+    <app-side-bar
+      [collapsed]="sidebarCollapsed"
+      [role]="userRole"
+    ></app-side-bar>
+  </aside>
 
-  <main class="main-content">
-    <router-outlet />
-  </main>
+  <!-- Main Area -->
+  <div class="main-area">
+
+    <!-- Header -->
+    <app-header
+      [role]="userRole"
+      (sidebarToggle)="toggleSidebar()"
+      (logout)="switchRole()"
+    ></app-header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
 
 </div>
