@@ -72,22 +72,22 @@
 
     <div class="summary-card">
 
-      <div class="summary-icon blue">
-        ✓
+      <div class="summary-icon orange">
+        !
       </div>
 
       <div class="summary-content">
 
         <span class="summary-label">
-          Ready for Deployment
+          Active Non-Compliance
         </span>
 
         <strong>
-          {{ readyForDeployment }}
+          {{ activeNonCompliance }}
         </strong>
 
         <span class="summary-detail">
-          {{ deploymentPercentage }}% of bench
+          {{ activeNonCompliancePercentage }}% of bench
         </span>
 
       </div>
@@ -452,15 +452,25 @@
       </div>
 
       <span class="resource-count">
-        {{ resources.length }}
+        {{ filteredResources.length }}
       </span>
 
+    </div>
+
+    <div class="resource-search">
+      <input
+        type="search"
+        aria-label="Search employees"
+        placeholder="Search employees..."
+        [value]="searchTerm"
+        (input)="updateSearch($event)"
+      />
     </div>
 
     <div class="resource-list">
 
       @for (
-        resource of resources;
+        resource of filteredResources;
         track resource.name
       ) {
 
@@ -548,28 +558,20 @@
 
             <button
               type="button"
-              class="action-button secondary"
-              (click)="assignTask(resource)"
-            >
-              Assign Task
-            </button>
-
-            <button
-              type="button"
               class="action-button primary"
-              [class.ready]="resource.readyForDeployment"
-              [disabled]="resource.readyForDeployment"
-              (click)="setReadyForDeployment(resource)"
+              title="Employee details page coming soon"
             >
-              {{
-                resource.readyForDeployment
-                  ? 'Ready'
-                  : 'Set Ready'
-              }}
+              View Employee
             </button>
 
           </div>
 
+        </div>
+
+      } @empty {
+
+        <div class="empty-state">
+          No employees match your search.
         </div>
 
       }

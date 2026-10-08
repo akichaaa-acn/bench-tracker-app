@@ -18,4 +18,17 @@ describe('Resources', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should filter employees by a case-insensitive search term', () => {
+    component.searchTerm = 'KUBERNETES';
+
+    expect(component.filteredResources.map(resource => resource.name))
+      .toEqual(['Alex Santos', 'Sarah Garcia']);
+  });
+
+  it('should return no employees when the search has no matches', () => {
+    component.searchTerm = 'no matching employee';
+
+    expect(component.filteredResources).toEqual([]);
+  });
 });

@@ -35,7 +35,7 @@ export class Dashboard {
   sickToday = 2;
   vacationToday = 3;
   absentToday = 2;
-  readyForDeployment = 31;
+  activeNonCompliance = 1;
 
   // Daily Attendance
   dayData: AttendanceData[] = [
@@ -158,20 +158,20 @@ export class Dashboard {
   actionItems: ActionItem[] = [
     {
       title: 'Review overdue training',
-      description: '3 bench resources have overdue required training.',
+      description: '3 bench employees have overdue required training.',
       type: 'Training',
       priority: 'High',
       due: 'Due today'
     },
     {
-      title: 'Assign unassigned resources',
-      description: '2 resources are currently without an assigned task.',
+      title: 'Assign unassigned employees',
+      description: '2 employees are currently without an assigned task.',
       type: 'Assignment',
       priority: 'High',
       due: 'Due today'
     },
     {
-      title: 'Update resource profiles',
+      title: 'Update employee profiles',
       description: '3 profiles are missing required information.',
       type: 'Profile',
       priority: 'Medium',
@@ -179,7 +179,7 @@ export class Dashboard {
     },
     {
       title: 'Review deployment readiness',
-      description: '5 resources are approaching deployment readiness.',
+      description: '5 employees are approaching deployment readiness.',
       type: 'Deployment',
       priority: 'Medium',
       due: 'Due this week'
@@ -192,9 +192,9 @@ export class Dashboard {
     );
   }
 
-  get deploymentPercentage(): number {
+  get activeNonCompliancePercentage(): number {
     return Math.round(
-      (this.readyForDeployment / this.totalEmployees) * 100
+      (this.activeNonCompliance / this.totalEmployees) * 100
     );
   }
 

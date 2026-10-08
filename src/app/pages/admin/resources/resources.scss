@@ -99,6 +99,11 @@ $radius: 16px;
     background: #eaf3ff;
     color: $blue;
   }
+
+  &.orange {
+    background: #fff3df;
+    color: $orange;
+  }
 }
 
 .summary-content {
@@ -608,6 +613,29 @@ $radius: 16px;
   font-weight: 700;
 }
 
+.resource-search {
+  margin-bottom: 14px;
+
+  input {
+    width: 100%;
+    max-width: 360px;
+    height: 36px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    border: 1px solid $border;
+    border-radius: 7px;
+    background: #ffffff;
+    color: $text;
+    font: inherit;
+    font-size: 10px;
+
+    &:focus {
+      border-color: $purple;
+      outline: 2px solid rgba(169, 0, 255, 0.12);
+    }
+  }
+}
+
 // Resource List
 .resource-list {
   display: flex;
@@ -737,8 +765,7 @@ $radius: 16px;
 // Resource Actions
 .resource-actions {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  justify-content: flex-end;
 }
 
 .action-button {
@@ -752,17 +779,6 @@ $radius: 16px;
   cursor: pointer;
   transition: background 150ms ease, color 150ms ease;
 
-  &.secondary {
-    border: 1px solid $border;
-    background: #ffffff;
-    color: $purple-dark;
-
-    &:hover {
-      border-color: $purple;
-      background: $purple-light;
-    }
-  }
-
   &.primary {
     border: 1px solid $purple;
     background: $purple;
@@ -770,19 +786,6 @@ $radius: 16px;
 
     &:hover {
       background: $purple-dark;
-    }
-
-    &:disabled {
-      border-color: #d6cdd9;
-      background: #eeeaf0;
-      color: $text-muted;
-      cursor: default;
-    }
-
-    &.ready {
-      border-color: $green;
-      background: #e5f6ef;
-      color: $green;
     }
   }
 }
@@ -795,7 +798,6 @@ $radius: 16px;
 
   .resource-actions {
     grid-column: span 2;
-    flex-direction: row;
     justify-content: flex-end;
   }
 }

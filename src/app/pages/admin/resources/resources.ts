@@ -13,7 +13,6 @@ interface Resource {
   skills: string[];
   attendanceStatus: AttendanceStatus;
   absenceDays: number;
-  readyForDeployment: boolean;
 }
 
 interface SkillDistribution {
@@ -40,7 +39,8 @@ interface CapabilityDistribution {
 export class Resources {
   totalEmployees = 86;
   presentToday = 79;
-  readyForDeployment = 31;
+  activeNonCompliance = 1;
+  searchTerm = '';
 
   skillDistribution: SkillDistribution[] = [
     {
@@ -123,8 +123,7 @@ export class Resources {
         'Terraform'
       ],
       attendanceStatus: 'Present',
-      absenceDays: 0,
-      readyForDeployment: false
+      absenceDays: 0
     },
     {
       name: 'Maria Cruz',
@@ -136,8 +135,7 @@ export class Resources {
         'Terraform'
       ],
       attendanceStatus: 'Present',
-      absenceDays: 0,
-      readyForDeployment: true
+      absenceDays: 0
     },
     {
       name: 'John Reyes',
@@ -149,8 +147,7 @@ export class Resources {
         'Cisco'
       ],
       attendanceStatus: 'Unapproved Absence',
-      absenceDays: 1,
-      readyForDeployment: false
+      absenceDays: 1
     },
     {
       name: 'Sarah Garcia',
@@ -163,8 +160,7 @@ export class Resources {
         'Docker'
       ],
       attendanceStatus: 'Unapproved Absence',
-      absenceDays: 3,
-      readyForDeployment: false
+      absenceDays: 3
     },
     {
       name: 'Michael Tan',
@@ -176,8 +172,7 @@ export class Resources {
         'Terraform'
       ],
       attendanceStatus: 'Present',
-      absenceDays: 0,
-      readyForDeployment: true
+      absenceDays: 0
     },
     {
       name: 'Nicole Lim',
@@ -189,8 +184,7 @@ export class Resources {
         'Incident Management'
       ],
       attendanceStatus: 'Vacation Leave',
-      absenceDays: 0,
-      readyForDeployment: false
+      absenceDays: 0
     }
   ];
 
@@ -217,14 +211,40 @@ export class Resources {
     );
   }
 
-  get deploymentPercentage(): number {
+  get activeNonCompliancePercentage(): number {
     if (!this.totalEmployees) {
       return 0;
     }
 
     return Math.round(
-      (this.readyForDeployment / this.totalEmployees) * 100
+      (this.activeNonCompliance / this.totalEmployees) * 100
     );
+  }
+
+  get filteredResources(): Resource[] {
+    const query = this.searchTerm.trim().toLowerCase();
+
+    if (!query) {
+      return this.resources;
+    }
+
+    return this.resources.filter(resource =>
+      [
+        resource.name,
+        resource.careerLevel,
+        resource.capability,
+        resource.attendanceStatus,
+        ...resource.skills
+      ].some(value => value.toLowerCase().includes(query))
+    );
+  }
+
+  updateSearch(event: Event): void {
+    const target = event.target;
+
+    if (target instanceof HTMLInputElement) {
+      this.searchTerm = target.value;
+    }
   }
 
   getSkillHeight(count: number): number {
@@ -262,14 +282,4 @@ export class Resources {
     );
   }
 
-  assignTask(resource: Resource): void {
-    console.log(
-      'Assign task to:',
-      resource.name
-    );
-  }
-
-  setReadyForDeployment(resource: Resource): void {
-    resource.readyForDeployment = true;
-  }
 }
