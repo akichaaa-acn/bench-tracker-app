@@ -25,9 +25,7 @@ export const routes: Routes = [
     import('./pages/admin/attendance/attendance')
       .then(m => m.Attendance)
   },
-  // =====================================================
   // User
-  // =====================================================
   {
     path: 'user/dashboard',
     loadComponent: () =>
@@ -55,9 +53,7 @@ export const routes: Routes = [
     import('./pages/user/time-out/time-out')
       .then(m => m.TimeOut)
   },
-  // =====================================================
   // Default
-  // =====================================================
 
   {
     path: '',
