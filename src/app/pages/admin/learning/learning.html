@@ -1,0 +1,453 @@
+<!-- =====================================================
+// Learning
+// ===================================================== -->
+
+<div class="learning-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <span class="page-eyebrow">
+        Learning Management
+      </span>
+
+      <h1>
+        Learning
+      </h1>
+
+      <p>
+        Monitor resource accomplishments, learning activity, and mandatory training.
+      </p>
+    </div>
+
+    <button
+      class="primary-button"
+      type="button"
+      (click)="addTraining()"
+    >
+      + Add Training
+    </button>
+
+  </div>
+
+  <!-- Learning Summary -->
+  <section class="summary-grid">
+
+    <div class="summary-card">
+
+      <span class="summary-label">
+        Completed Today
+      </span>
+
+      <strong>
+        {{ totalCompleted }}
+      </strong>
+
+      <span class="summary-detail">
+        Learning activities completed
+      </span>
+
+    </div>
+
+    <div class="summary-card">
+
+      <span class="summary-label">
+        Completion Rate
+      </span>
+
+      <strong>
+        {{ completionRate }}%
+      </strong>
+
+      <span class="summary-detail">
+        Across assigned learning
+      </span>
+
+    </div>
+
+    <div class="summary-card">
+
+      <span class="summary-label">
+        No Active Tasks
+      </span>
+
+      <strong>
+        {{ employeesWithoutTasks.length }}
+      </strong>
+
+      <span class="summary-detail">
+        Resources require learning assignment
+      </span>
+
+    </div>
+
+    <div class="summary-card">
+
+      <span class="summary-label">
+        Mandatory Training
+      </span>
+
+      <strong>
+        {{ mandatoryTrainings.length }}
+      </strong>
+
+      <span class="summary-detail">
+        Training programs configured
+      </span>
+
+    </div>
+
+  </section>
+
+  <!-- Recent Accomplishments -->
+  <section class="learning-card">
+
+    <div class="card-header">
+
+      <div>
+        <span class="card-eyebrow">
+          Recent Activity
+        </span>
+
+        <h2>
+          Recent Accomplishments
+        </h2>
+
+        <p>
+          Latest learning and training accomplishments from resources.
+        </p>
+      </div>
+
+      <span class="activity-count">
+        {{ achievements.length }} Recent
+      </span>
+
+    </div>
+
+    <div class="achievement-list">
+
+      @for (
+        achievement of achievements;
+        track achievement.employee + achievement.title
+      ) {
+
+        <div class="achievement-item">
+
+          <div class="achievement-icon">
+            ✓
+          </div>
+
+          <div class="achievement-content">
+
+            <strong>
+              {{ achievement.employee }}
+            </strong>
+
+            <span class="achievement-title">
+              {{ achievement.title }}
+            </span>
+
+            <p>
+              {{ achievement.description }}
+            </p>
+
+          </div>
+
+          <div class="achievement-meta">
+
+            <span class="achievement-type">
+              {{ achievement.type }}
+            </span>
+
+            <span>
+              {{ achievement.date }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+  <!-- Daily Completions + No Active Tasks -->
+  <div class="management-grid">
+
+    <!-- Daily Completion Statistics -->
+    <section class="learning-card">
+
+      <div class="card-header">
+
+        <div>
+          <span class="card-eyebrow">
+            Daily Statistics
+          </span>
+
+          <h2>
+            Employee Completions
+          </h2>
+
+          <p>
+            Learning activities completed by employees today.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="completion-list">
+
+        @for (
+          item of completionStats;
+          track item.employee
+        ) {
+
+          <div class="completion-item">
+
+            <div class="completion-info">
+
+              <strong>
+                {{ item.employee }}
+              </strong>
+
+              <span>
+                {{ item.completed }} of {{ item.total }} completed
+              </span>
+
+            </div>
+
+            <div class="completion-value">
+              {{ getCompletionPercentage(item) }}%
+            </div>
+
+            <div class="completion-bar">
+
+              <span
+                [style.width.%]="getCompletionPercentage(item)"
+              ></span>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+    <!-- No Active Tasks -->
+    <section class="learning-card">
+
+      <div class="card-header">
+
+        <div>
+          <span class="card-eyebrow warning-eyebrow">
+            Attention Required
+          </span>
+
+          <h2>
+            No Active Tasks
+          </h2>
+
+          <p>
+            Resources who currently have no active learning tasks.
+          </p>
+        </div>
+
+        <span class="warning-count">
+          {{ employeesWithoutTasks.length }}
+        </span>
+
+      </div>
+
+      <div class="employee-list">
+
+        @for (
+          employee of employeesWithoutTasks;
+          track employee.name
+        ) {
+
+          <div class="employee-item">
+
+            <div class="employee-avatar">
+              {{ employee.name.charAt(0) }}
+            </div>
+
+            <div class="employee-info">
+
+              <strong>
+                {{ employee.name }}
+              </strong>
+
+              <span>
+                {{ employee.capability }}
+              </span>
+
+            </div>
+
+            <div class="employee-last">
+
+              <span>
+                Last activity
+              </span>
+
+              <strong>
+                {{ employee.lastActivity }}
+              </strong>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Mandatory Trainings -->
+  <section class="learning-card">
+
+    <div class="card-header">
+
+      <div>
+        <span class="card-eyebrow">
+          Training Management
+        </span>
+
+        <h2>
+          Mandatory Trainings
+        </h2>
+
+        <p>
+          Manage required training programs assigned to bench resources.
+        </p>
+      </div>
+
+      <button
+        class="secondary-button"
+        type="button"
+        (click)="addTraining()"
+      >
+        + Add Training
+      </button>
+
+    </div>
+
+    <div class="training-table-wrapper">
+
+      <table class="training-table">
+
+        <thead>
+
+          <tr>
+            <th>Training</th>
+            <th>Due</th>
+            <th>Assigned</th>
+            <th>Completed</th>
+            <th>Progress</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          @for (
+            training of mandatoryTrainings;
+            track training.id
+          ) {
+
+            <tr>
+
+              <td>
+
+                <div class="training-info">
+
+                  <strong>
+                    {{ training.title }}
+                  </strong>
+
+                  <span>
+                    {{ training.description }}
+                  </span>
+
+                </div>
+
+              </td>
+
+              <td>
+                {{ training.due }}
+              </td>
+
+              <td>
+                {{ training.assigned }}
+              </td>
+
+              <td>
+                {{ training.completed }}
+              </td>
+
+              <td>
+
+                <div class="training-progress">
+
+                  <div class="progress-bar">
+
+                    <span
+                      [style.width.%]="getTrainingPercentage(training)"
+                    ></span>
+
+                  </div>
+
+                  <strong>
+                    {{ getTrainingPercentage(training) }}%
+                  </strong>
+
+                </div>
+
+              </td>
+
+              <td>
+
+                <span
+                  class="status-badge"
+                  [class.draft]="training.status === 'Draft'"
+                >
+                  {{ training.status }}
+                </span>
+
+              </td>
+
+              <td>
+
+                <button
+                  class="edit-button"
+                  type="button"
+                  (click)="editTraining(training)"
+                >
+                  Edit
+                </button>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</div>

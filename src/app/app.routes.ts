@@ -25,7 +25,16 @@ export const routes: Routes = [
     import('./pages/admin/attendance/attendance')
       .then(m => m.Attendance)
   },
+
+  {
+  path: 'learning',
+  loadComponent: () =>
+    import('./pages/admin/learning/learning')
+      .then(m => m.Learning)
+  },
+  // =====================================================
   // User
+  // =====================================================
   {
     path: 'user/dashboard',
     loadComponent: () =>
