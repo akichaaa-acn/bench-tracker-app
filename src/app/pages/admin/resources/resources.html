@@ -451,9 +451,19 @@
         </h2>
       </div>
 
-      <span class="resource-count">
-        {{ filteredResources.length }}
-      </span>
+      <div class="card-header-actions">
+        <span class="resource-count">
+          {{ filteredResources.length }}
+        </span>
+
+        <button
+          type="button"
+          class="action-button primary add-employee-button"
+          title="Employee creation coming soon"
+        >
+          Add Employee
+        </button>
+      </div>
 
     </div>
 
@@ -465,6 +475,52 @@
         [value]="searchTerm"
         (input)="updateSearch($event)"
       />
+    </div>
+
+    <div class="resource-filters">
+      <select
+        aria-label="Filter by capability"
+        [value]="capabilityFilter"
+        (change)="updateCapabilityFilter($event)"
+      >
+        <option value="">All Capabilities</option>
+        @for (capability of capabilityOptions; track capability) {
+          <option [value]="capability">{{ capability }}</option>
+        }
+      </select>
+
+      <select
+        aria-label="Filter by career level"
+        [value]="careerLevelFilter"
+        (change)="updateCareerLevelFilter($event)"
+      >
+        <option value="">All Career Levels</option>
+        @for (level of careerLevelOptions; track level) {
+          <option [value]="level">{{ level }}</option>
+        }
+      </select>
+
+      <select
+        aria-label="Filter by skill"
+        [value]="skillFilter"
+        (change)="updateSkillFilter($event)"
+      >
+        <option value="">All Skills</option>
+        @for (skill of skillOptions; track skill) {
+          <option [value]="skill">{{ skill }}</option>
+        }
+      </select>
+
+      <select
+        aria-label="Filter by attendance"
+        [value]="attendanceFilter"
+        (change)="updateAttendanceFilter($event)"
+      >
+        <option value="">All Attendance</option>
+        @for (status of attendanceOptions; track status) {
+          <option [value]="status">{{ status }}</option>
+        }
+      </select>
     </div>
 
     <div class="resource-list">
@@ -571,7 +627,7 @@
       } @empty {
 
         <div class="empty-state">
-          No employees match your search.
+          No employees match your search or filters.
         </div>
 
       }

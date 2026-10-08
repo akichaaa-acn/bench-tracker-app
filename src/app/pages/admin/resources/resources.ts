@@ -41,6 +41,10 @@ export class Resources {
   presentToday = 79;
   activeNonCompliance = 1;
   searchTerm = '';
+  capabilityFilter = '';
+  careerLevelFilter = '';
+  skillFilter = '';
+  attendanceFilter = '';
 
   skillDistribution: SkillDistribution[] = [
     {
@@ -224,19 +228,42 @@ export class Resources {
   get filteredResources(): Resource[] {
     const query = this.searchTerm.trim().toLowerCase();
 
-    if (!query) {
-      return this.resources;
-    }
-
     return this.resources.filter(resource =>
-      [
-        resource.name,
-        resource.careerLevel,
-        resource.capability,
-        resource.attendanceStatus,
-        ...resource.skills
-      ].some(value => value.toLowerCase().includes(query))
+      (!query || [
+          resource.name,
+          resource.careerLevel,
+          resource.capability,
+          resource.attendanceStatus,
+          ...resource.skills
+        ].some(value => value.toLowerCase().includes(query))) &&
+      (!this.capabilityFilter ||
+        resource.capability === this.capabilityFilter) &&
+      (!this.careerLevelFilter ||
+        resource.careerLevel === this.careerLevelFilter) &&
+      (!this.skillFilter || resource.skills.includes(this.skillFilter)) &&
+      (!this.attendanceFilter ||
+        resource.attendanceStatus === this.attendanceFilter)
     );
+  }
+
+  get capabilityOptions(): string[] {
+    return [...new Set(this.resources.map(resource => resource.capability))]
+      .sort((a, b) => a.localeCompare(b));
+  }
+
+  get careerLevelOptions(): string[] {
+    return [...new Set(this.resources.map(resource => resource.careerLevel))]
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  }
+
+  get skillOptions(): string[] {
+    return [...new Set(this.resources.flatMap(resource => resource.skills))]
+      .sort((a, b) => a.localeCompare(b));
+  }
+
+  get attendanceOptions(): AttendanceStatus[] {
+    return [...new Set(this.resources.map(resource => resource.attendanceStatus))]
+      .sort((a, b) => a.localeCompare(b));
   }
 
   updateSearch(event: Event): void {
@@ -244,6 +271,38 @@ export class Resources {
 
     if (target instanceof HTMLInputElement) {
       this.searchTerm = target.value;
+    }
+  }
+
+  updateCapabilityFilter(event: Event): void {
+    const target = event.target;
+
+    if (target instanceof HTMLSelectElement) {
+      this.capabilityFilter = target.value;
+    }
+  }
+
+  updateCareerLevelFilter(event: Event): void {
+    const target = event.target;
+
+    if (target instanceof HTMLSelectElement) {
+      this.careerLevelFilter = target.value;
+    }
+  }
+
+  updateSkillFilter(event: Event): void {
+    const target = event.target;
+
+    if (target instanceof HTMLSelectElement) {
+      this.skillFilter = target.value;
+    }
+  }
+
+  updateAttendanceFilter(event: Event): void {
+    const target = event.target;
+
+    if (target instanceof HTMLSelectElement) {
+      this.attendanceFilter = target.value;
     }
   }
 

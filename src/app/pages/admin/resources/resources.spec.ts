@@ -31,4 +31,21 @@ describe('Resources', () => {
 
     expect(component.filteredResources).toEqual([]);
   });
+
+  it('should apply capability, career level, skill, and attendance filters together', () => {
+    component.capabilityFilter = 'Hybrid Cloud - Operations';
+    component.careerLevelFilter = 'CL9';
+    component.skillFilter = 'Kubernetes';
+    component.attendanceFilter = 'Unapproved Absence';
+
+    expect(component.filteredResources.map(resource => resource.name))
+      .toEqual(['Sarah Garcia']);
+  });
+
+  it('should filter employees by skill', () => {
+    component.skillFilter = 'Cisco';
+
+    expect(component.filteredResources.map(resource => resource.name))
+      .toEqual(['John Reyes']);
+  });
 });
